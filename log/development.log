@@ -1,0 +1,48 @@
+  [4;36;1mSQL (0.000000)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.016000)[0m   [0mCREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreatePosts (1)
+  [4;35;1mSQL (0.000000)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) DEFAULT NULL, "body" text DEFAULT NULL, "created_at" datetime DEFAULT NULL, "updated_at" datetime DEFAULT NULL) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPRAGMA index_list(posts)[0m
+
+
+Processing PostsController#index (for 127.0.0.1 at 2010-10-18 00:56:14) [GET]
+  Session ID: 101b1c76b54a6bdcf0f6ac86196a3c0a
+  Parameters: {"action"=>"index", "controller"=>"posts"}
+  [4;36;1mPost Load (0.000000)[0m   [0;1mSELECT * FROM posts [0m
+Rendering template within layouts/posts
+Rendering posts/index
+Completed in 0.01600 (62 reqs/sec) | Rendering: 0.01600 (100%) | DB: 0.00000 (0%) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#new (for 127.0.0.1 at 2010-10-18 00:56:16) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo%0ASGFzaHsABjoKQHVzZWR7AA%3D%3D--493667fae4109fe4545bad56d0bea6c29368d485
+  Parameters: {"action"=>"new", "controller"=>"posts"}
+Rendering template within layouts/posts
+Rendering posts/new
+Completed in 0.01600 (62 reqs/sec) | Rendering: 0.01600 (100%) | DB: 0.00000 (0%) | 200 OK [http://localhost/posts/new]
+
+
+Processing PostsController#create (for 127.0.0.1 at 2010-10-18 00:56:32) [POST]
+  Session ID: BAh7BzoMY3NyZl9pZCIlNWRiN2M5NDRmN2ZiNWY3ZTkxNzMwODNjYzYwODUw%0AZjEiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh%0Ac2h7AAY6CkB1c2VkewA%3D--598cf4bf5fa8140df60f5dd3e48422876476c0f1
+  Parameters: {"commit"=>"Create", "post"=>{"title"=>"new post", "body"=>"my name is suping"}, "authenticity_token"=>"d68541272f1fff9b1efadb2215e74ef62050da28", "action"=>"create", "controller"=>"posts"}
+  [4;35;1mPost Create (0.031000)[0m   [0mINSERT INTO posts ("updated_at", "body", "title", "created_at") VALUES('2010-10-18 00:56:32', 'my name is suping', 'new post', '2010-10-18 00:56:32')[0m
+Redirected to http://localhost:3000/posts/1
+Completed in 0.04700 (21 reqs/sec) | DB: 0.03100 (65%) | 302 Found [http://localhost/posts]
+
+
+Processing PostsController#show (for 127.0.0.1 at 2010-10-18 00:56:32) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlNWRiN2M5NDRmN2ZiNWY3ZTkxNzMwODNjYzYwODUw%0AZjEiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh%0Ac2h7BjoLbm90aWNlIiNQb3N0IHdhcyBzdWNjZXNzZnVsbHkgY3JlYXRlZC4G%0AOgpAdXNlZHsGOwdU--8648d79448ce5cf234f90db7e32c62e238e7dd18
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"posts"}
+  [4;36;1mPost Load (0.000000)[0m   [0;1mSELECT * FROM posts WHERE (posts."id" = 1) [0m
+Rendering template within layouts/posts
+Rendering posts/show
+Completed in 0.03100 (32 reqs/sec) | Rendering: 0.01500 (48%) | DB: 0.00000 (0%) | 200 OK [http://localhost/posts/1]
